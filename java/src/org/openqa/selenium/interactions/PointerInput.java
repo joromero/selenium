@@ -120,15 +120,6 @@ public class PointerInput implements InputSource, Encodable {
       this.eventProperties = new PointerEventProperties();
     }
 
-    /**
-     * @deprecated always use the constructor with the button
-     */
-    @Deprecated
-    public PointerPress(
-        InputSource source, Direction direction, PointerEventProperties eventProperties) {
-      this(source, direction, 0, eventProperties);
-    }
-
     public PointerPress(
         InputSource source,
         Direction direction,

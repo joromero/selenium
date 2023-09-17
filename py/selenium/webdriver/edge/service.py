@@ -27,8 +27,6 @@ class Service(service.ChromiumService):
 
     :param executable_path: install path of the msedgedriver executable, defaults to `msedgedriver`.
     :param port: Port for the service to run on, defaults to 0 where the operating system will decide.
-    :param verbose: (Deprecated) Whether to make the webdriver more verbose (passes the --verbose option to the binary).
-        Defaults to False.
     :param log_path: (Optional) String to be passed to the executable as `--log-path`.
     :param service_args: (Optional) List of args to be passed to the subprocess when launching the executable.
     :param env: (Optional) Mapping of environment variables for the new process, defaults to `os.environ`.
@@ -38,7 +36,6 @@ class Service(service.ChromiumService):
         self,
         executable_path: str = None,
         port: int = 0,
-        verbose: bool = False,
         log_path: typing.Optional[str] = None,
         log_output: SubprocessStdAlias = None,
         service_args: typing.Optional[typing.List[str]] = None,
@@ -46,14 +43,6 @@ class Service(service.ChromiumService):
         **kwargs,
     ) -> None:
         self.service_args = service_args or []
-
-        if verbose:
-            warnings.warn(
-                "verbose=True is deprecated. Use `service_args=['--verbose', ...]` instead.",
-                DeprecationWarning,
-                stacklevel=2,
-            )
-            self.service_args.append("--verbose")
 
         super().__init__(
             executable_path=executable_path,

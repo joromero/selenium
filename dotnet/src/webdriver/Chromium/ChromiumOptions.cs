@@ -42,10 +42,8 @@ namespace OpenQA.Selenium.Chromium
         private const string MobileEmulationChromeOption = "mobileEmulation";
         private const string PerformanceLoggingPreferencesChromeOption = "perfLoggingPrefs";
         private const string WindowTypesChromeOption = "windowTypes";
-        private const string UseSpecCompliantProtocolOption = "w3c";
 
         private bool leaveBrowserRunning;
-        private bool useSpecCompliantProtocol = true;
         private string binaryLocation;
         private string debuggerAddress;
         private string minidumpPath;
@@ -83,7 +81,6 @@ namespace OpenQA.Selenium.Chromium
             this.AddKnownCapabilityName(ChromiumOptions.MobileEmulationChromeOption, "EnableMobileEmulation method");
             this.AddKnownCapabilityName(ChromiumOptions.PerformanceLoggingPreferencesChromeOption, "PerformanceLoggingPreferences property");
             this.AddKnownCapabilityName(ChromiumOptions.WindowTypesChromeOption, "AddWindowTypes method");
-            this.AddKnownCapabilityName(ChromiumOptions.UseSpecCompliantProtocolOption, "UseSpecCompliantProtocol property");
         }
 
         /// <summary>
@@ -183,27 +180,6 @@ namespace OpenQA.Selenium.Chromium
         {
             get { return this.androidOptions; }
             set { this.androidOptions = value; }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the <see cref="ChromiumDriver"/> instance
-        /// should use the legacy OSS protocol dialect or a dialect compliant with the W3C
-        /// WebDriver Specification.
-        /// </summary>
-        [Obsolete("Spec Compliant Protocol is the only supported protocol")]
-        public bool UseSpecCompliantProtocol
-        {
-            get { return this.useSpecCompliantProtocol; }
-            set
-            {
-                if (!value)
-                {
-                    throw new ArgumentException("Only the spec compliant protocol is supported, " +
-                                                "Please update to W3C Syntax: " +
-                                                "https://www.selenium.dev/blog/2022/legacy-protocol-support/");
-                }
-                this.useSpecCompliantProtocol = true;
-            }
         }
 
         /// <summary>
@@ -580,11 +556,6 @@ namespace OpenQA.Selenium.Chromium
             if (this.leaveBrowserRunning)
             {
                 chromeOptions[DetachChromeOption] = this.leaveBrowserRunning;
-            }
-
-            if (!this.useSpecCompliantProtocol)
-            {
-                chromeOptions[UseSpecCompliantProtocolOption] = this.useSpecCompliantProtocol;
             }
 
             if (!string.IsNullOrEmpty(this.debuggerAddress))

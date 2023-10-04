@@ -20,8 +20,6 @@ import static org.openqa.selenium.edge.EdgeOptions.WEBVIEW2_BROWSER_NAME;
 import static org.openqa.selenium.remote.Browser.EDGE;
 
 import com.google.auto.service.AutoService;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import java.util.Optional;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.ImmutableCapabilities;

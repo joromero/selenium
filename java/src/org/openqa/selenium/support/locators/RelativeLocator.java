@@ -214,11 +214,6 @@ public class RelativeLocator {
     public Parameters getRemoteParameters() {
       return new Parameters("relative", ImmutableMap.of("root", root, "filters", filters));
     }
-
-    private Map<String, Object> toJson() {
-      return ImmutableMap.of(
-          "using", "relative", "value", ImmutableMap.of("root", root, "filters", filters));
-    }
   }
 
   private static Object asAtomLocatorParameter(Object object) {

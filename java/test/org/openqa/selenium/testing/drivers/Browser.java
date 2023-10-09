@@ -42,6 +42,8 @@ public enum Browser {
     public Capabilities getCapabilities() {
       ChromeOptions options = new ChromeOptions();
 
+      options.setBrowserVersion("118");
+
       String binary = System.getProperty("webdriver.chrome.binary");
       if (binary != null) {
         options.setBinary(binary);
